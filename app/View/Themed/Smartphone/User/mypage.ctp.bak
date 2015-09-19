@@ -1,0 +1,78 @@
+<?php
+echo $this->Html->script('common/jquery-2.0.0.min.js', array('inline'=>false));
+echo $this->Html->script('common/ajax.js', array('inline'=>false));
+echo $this->Html->script('user/mypage.js', array('inline'=>false));
+echo $this->Html->css('user/m_mypage', array('inline'=>false));
+?>
+<div>
+
+	<!-- マイページ名 -->
+	<h2>
+		<?=$users['User']['title']?>&nbsp;
+		<a style="color:#fff" href="/user/setting/<?=$user_id?>">[編集]</a>
+	</h2>
+
+	<!-- ページャ -->
+	<?=$this->element('pager',array('link'=>"/user/mypage/{$user_id}"));?>
+	
+	<!-- マイリストＢＯＸ -->
+	<?php foreach ($mylists as $m): ?>
+	<?php
+		$v = $m['DataMylist'];
+		$movie = json_decode($v['last_movie_data']);
+		if( (time() - strtotime($movie->published)) < (3600*24) ){
+			$color_style = "red";
+		} else if( (time() - strtotime($movie->published)) < (3600*24*7) ){
+			$color_style = "green";
+		} else if( (time() - strtotime($movie->published)) < (3600*24*30) ){
+			$color_style = "blue";
+		} else {
+			$color_style = "black";
+		}
+	?>
+	<article class="mylist_box box_<?=$color_style?>" value="<?=$v['mylist_str']?>">
+
+		<!-- BOX上部分 -->
+		<div class="mylist_box_top">
+			<a href="http://www.nicovideo.jp/mylist/<?=$v['mylist_str']?>" target="_blank"><?=$v['author'].' : '.$v['title']?></a>
+		</div>
+
+		<!-- BOX中部分 -->
+		<div class="mylist_box_middle">
+			<!-- BOX左部分 -->
+			<div class="mylist_box_left">
+				<img src="http://tn-skr1.smilevideo.jp/smile?i=<?=$movie->movie_str?>"/>
+			</div>
+			<!-- BOX右部分 -->
+			<div class="mylist_box_right">
+				<div class="title_large"><a href="http://nicovideo.jp/watch/sm<?=$movie->movie_str?>" target="_blank"><?=$movie->title?></a></div>
+				<div class="info_large"><?=date("Y/m/d H:i", strtotime($movie->published))?>投稿</div>
+			</div>
+		</div>
+
+		<!-- BOX下部分 -->
+		<?php if (isset($v['before_movie_data'])){ ?>
+		<?php $movie_b = json_decode($v['before_movie_data']); ?>
+		<?php if (count($movie_b)>0){ ?>
+		<div class="mylist_box_bottom">
+			<?php foreach($movie_b as $b){ ?>
+			<div class="title">
+				<a href="http://nicovideo.jp/watch/sm<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
+				<?=date("Y/m/d", strtotime($b->published))?>
+			</div>
+			<?php }//foreach ?>
+		</div>
+		<?php }//if ?>
+		<?php }//if ?>
+
+		<!-- BOX 右下部分 -->
+		<div class="mylist_box_footer">
+			最終チェック:<?=date("Y/m/d H:i", strtotime($v['updated_at']))?>
+		</div>
+	</article>
+	<?php endforeach ?>
+
+	<!-- ページャ -->
+	<?=$this->element('pager',array('link'=>"/user/mypage/{$user_id}"));?>
+
+</div>

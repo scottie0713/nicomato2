@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteBase    /~www/
+   RewriteRule    ^$ nicomato/    [L]
+   RewriteRule    (.*) nicomato/$1 [L]
+</IfModule>
