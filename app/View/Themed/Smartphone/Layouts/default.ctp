@@ -2,6 +2,9 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
 	<?php echo $this->Html->charset(); ?>
 	<title>にこまと！2.0</title>
 	<?php
