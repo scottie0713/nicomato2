@@ -72,6 +72,22 @@ class DataMylist extends AppModel
 	}
 
 	/**
+	 *  data_mylist_id取得
+	 *  @param int data_type
+	 *  @param string mylist_str
+	 *  @return DataMylist
+	 */
+	public function getOneByMylistStr($data_type, $mylist_str) {
+		$res = $this->find('first', array(
+				'conditions' => array(
+					'data_type'  => $data_type,
+					'mylist_str' => $mylist_str,
+				),
+		));
+		return $res;
+	}
+
+	/**
 	 *  検索
 	 *
 	 */
@@ -101,7 +117,7 @@ class DataMylist extends AppModel
 	/**
 	 *  登録
 	 *  @param  data_type 1:マイリスト,2:ユーザ
-	 *  @param  mylist_str 
+	 *  @param  mylist_str
 	 *	@return int PK
 	 */
 	public function add($data_type, $mylist_str) {
@@ -302,7 +318,7 @@ class DataMylist extends AppModel
 		}
 		$xml = simplexml_load_string($strXml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		// ---- 投稿者
-		$author = (string)$xml->channel->title; 
+		$author = (string)$xml->channel->title;
 		// ---- マイリスト名
 		$title = '';
 		// ---- 最新投稿日時
@@ -348,7 +364,7 @@ class DataMylist extends AppModel
 		}
 		$xml = simplexml_load_string($strXml, 'SimpleXMLElement', LIBXML_NOCDATA);
 		// ---- 投稿者
-		$author = (string)$xml->channel->title; 
+		$author = (string)$xml->channel->title;
 		$author = mb_ereg_replace("チャンネル生放送 - niconico","",$author);
 		// ---- マイリスト名
 		$title = '';

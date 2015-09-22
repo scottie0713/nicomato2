@@ -14,7 +14,7 @@ class UserController extends AppController
 
     public $helpers = array('Html', 'Form');
     public $uses = array('DataMylist', 'UserMylist', 'UserRanking','User');
-	public $components = array('Str');
+	public $components = array('Str', 'Cookie');
 
 
     /**
@@ -57,13 +57,25 @@ class UserController extends AppController
 		if (is_null($user_id) || $user_id == 0) {
 			$this->redirect('/');
 		}
-		if (count($this->User->get($user_id)) == 0) {
+		// user
+		$user = $this->User->get($user_id);
+		if (count($user) == 0) {
 			$this->redirect('/');
 		}
 
 		//リスト取得
 		$mylists = $this->UserMylist->getWithData($user_id);
 
+		//パスワード
+		$password = '';
+		if ($this->Cookie->read('session')) {
+			$cookie_session = $this->Cookie->read('session');
+			if ($cookie_session == $user['User']['session']) {
+				$password = $user['User']['password'];
+			}
+		}
+		$this->set('title', $user['User']['title']);
+		$this->set('password', $password);
         $this->set('mylists', $mylists);
         $this->set('user_id', $user_id);
     }
@@ -137,6 +149,8 @@ class UserController extends AppController
 			$users['User']['session'] = $res['session'];
 			$users['User']['updated_at'] = date("Y-m-d H:i:s");
 			$this->User->save($users);
+			// cookie期限は1ヶ月
+			$this->Cookie->write("session", $res['session'], false, (3600*24*7));
 		}
         // 値をJSONで返す
         $this->viewClass = 'Json';
@@ -161,34 +175,20 @@ class UserController extends AppController
 
 		$session = $this->request->data('session');
 		if( $this->checkSession($user_id, $session) ){
-
 			$mode = $this->request->data('mode');
-			$id = $this->request->data('id');
+			$data_type = $this->request->data('data_type');
+			$mylist_str= $this->request->data('mylist_str');
 
-			$user_mylist = $this->UserMylist->getOne($id);
-			if ($mode == 'check_on') {
-				// 設定されてある更新件数取得
-				if ( $this->UserMylist->getCount($user_id, 1, 0) >= USER_CHECK_ON_LIMIT ){
-					$res['msg'] = '更新ONにできるのは'.USER_CHECK_ON_LIMIT.'件までです';
-					$res['code']= 'check_max';
-					$res['success'] = false;
-				} else {
-					$user_mylist['UserMylist']['check_flag']  = 1;
-				}
-			} else if($mode == 'check_off' ) {
-				$user_mylist['UserMylist']['check_flag']  = 0;
-
-			} else if($mode == 'delete_on' ) {
-				$user_mylist['UserMylist']['delete_flag'] = 1;
-				$user_mylist['UserMylist']['check_flag']  = 0;
+			$data_mylist = $this->DataMylist->getOneByMylistStr($data_type, $mylist_str);
+			if($mode == 'delete_on' ) {
+				$this->UserMylist->updateDeleteFlag($user_id, $data_mylist['DataMylist']['id'], 1);
 			} else if($mode == 'delete_off') {
-				$user_mylist['UserMylist']['delete_flag'] = 0;
+				$this->UserMylist->updateDeleteFlag($user_id, $data_mylist['DataMylist']['id'], 0);
 			} else {
 				$res['msg'] = '無効なパラメータです';
 				$res['code']= 'param_err';
 				$res['success'] = false;
 			}
-			$this->UserMylist->save($user_mylist);
 
 		} else {
 			$res['msg'] = '認証に失敗しました';
@@ -298,7 +298,6 @@ class UserController extends AppController
 			'success' => false,
 			'msg' => ''
 		);
-
 		$session = $this->request->data('session');
 		if( $this->checkSession($user_id, $session) ){
 			$password = $this->request->data('password');
@@ -363,12 +362,12 @@ class UserController extends AppController
                     'user_id'=>$userId,
                     'category'=>1,
                     'updated_at'=>date("y:m:d h:i:s")
-                ),false); 
-            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>9, 'updated_at'=>date("y:m:d h:i:s")),false); 
-            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>18, 'updated_at'=>date("y:m:d h:i:s")),false); 
-            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>19, 'updated_at'=>date("y:m:d h:i:s")),false); 
-            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>24, 'updated_at'=>date("y:m:d h:i:s")),false); 
-            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>31, 'updated_at'=>date("y:m:d h:i:s")),false); 
+                ),false);
+            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>9, 'updated_at'=>date("y:m:d h:i:s")),false);
+            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>18, 'updated_at'=>date("y:m:d h:i:s")),false);
+            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>19, 'updated_at'=>date("y:m:d h:i:s")),false);
+            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>24, 'updated_at'=>date("y:m:d h:i:s")),false);
+            $this->UserRanking->save(array('id'=>null, 'user_id'=>$userId, 'category'=>31, 'updated_at'=>date("y:m:d h:i:s")),false);
             $user_rankings = $this->UserRanking->find('all', array(
                 'conditions'=>array('user_id' => $userId),
                 'order'=>'id ASC'
@@ -442,7 +441,7 @@ class UserController extends AppController
             'conditions' => $conditions,
             'order'=>'rank ASC',
         ));
-     
+
         // 値をJSONで返す
         $this->viewClass = 'Json';
         $this->set(compact('rankings'));

@@ -6,7 +6,7 @@ class UserMylist extends AppModel
 	public $useTable = 'user_mylists';
 
 	/**
-	 *  $BJT=8%Z!<%8MQ(B
+	 *
 	 */
 	public function getWithData($user_id){
 
@@ -25,7 +25,8 @@ class UserMylist extends AppModel
  FROM user_mylists u
  LEFT JOIN data_mylists d ON d.id = u.data_mylist_id
  WHERE u.user_id = :user_id
- AND u.delete_flag = :delete_flag ;
+ AND u.delete_flag = :delete_flag
+ GROUP BY d.mylist_str;
  ";
 		$params = array(
 			'user_id'    => $user_id,
@@ -33,18 +34,27 @@ class UserMylist extends AppModel
 		);
 
 		return $this->query($sql,$params);
-		
+
 	}//function
 
 
-	public function getOne($id) {
-
-		$user_mylist = $this->find('first', array(
+	/**
+	 * data_mylist_idから取得
+	 * @param unknown $id
+	 */
+	public function getAllByDataMylistId($id) {
+		$user_mylist = $this->find('all', array(
 				'conditions' => array( 'id' => $id ),
 		));
 		return $user_mylist;
 	}
 
+	/**
+	 * 件数取得
+	 * @param unknown $user_id
+	 * @param string $check_flag
+	 * @param string $delete_flag
+	 */
 	public function getCount($user_id, $check_flag=null, $delete_flag=null) {
 
 		$params = array(
@@ -63,6 +73,10 @@ class UserMylist extends AppModel
 	}
 
 
+	/**
+	 * ユーザＩＤから取得
+	 * @param unknown $user_id
+	 */
 	public function get($user_id) {
 
 		$params = array(
@@ -83,4 +97,26 @@ class UserMylist extends AppModel
 	}
 
 
+
+	/**
+	 * delete_flag更新
+	 * @param unknown $user_id
+	 * @param unknown $data_mylist_id
+	 * @param unknown $delete_flag
+	 */
+	public function updateDeleteFlag($user_id, $data_mylist_id, $delete_flag){
+		$sql = "
+ UPDATE user_mylists
+ SET delete_flag = :delete_flag
+ WHERE user_id = :user_id
+ AND data_mylist_id = :data_mylist_id";
+		$params = array(
+				'delete_flag'    => $delete_flag,
+				'user_id'        => $user_id,
+				'data_mylist_id' => $data_mylist_id,
+		);
+
+		return $this->query($sql,$params);
+
+	}//function
 }

@@ -35,13 +35,13 @@ class AppController extends Controller {
 	public $uses = array('LogAccessPage', 'DataAd');
 
 	public function beforeFilter(){
-		// $B%-%c%C%7%eL58z(B
+		// キャッシュ無効
 		$this->response->disableCache();
-		// PC/$B%b%P%$%kH=Dj(B
+		// PC/モバイルチェック
 		if ($this->request->is('mobile')) {
 			$this->theme = 'Smartphone';
 		}
-		// access$B%m%0J]B8(B
+		// accessログ保存
 		$this->LogAccessPage->save(
 			array(
 				'controller' => $this->name,
@@ -50,7 +50,7 @@ class AppController extends Controller {
 				'created_at' => date("Y-m-d H:i:s"),
 			)
 		);
-		// $B9-9p<hF@(B(amazon/dmm)
+		// 広告取得
 		$ad_amazon = $this->DataAd->get(($this->request->is('mobile'))?2:1, 'amazon');
 		$ad_dmm = $this->DataAd->get(($this->request->is('mobile'))?2:1, 'dmm');
 		$this->set('ad_amazon', $ad_amazon);
