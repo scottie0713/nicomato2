@@ -15,7 +15,7 @@
 		<!-- BOX右部分 -->
 		<div class="mylist_box_right">
 			<div class="info_large"><?=date("Y/m/d H:i", strtotime($movie->published))?>投稿</div>
-			<div class="title_large"><a href="http://www.nicovideo.jp/watch/sm<?=$movie->movie_str?>" target="_blank"><?=$movie->title?></a></div>
+			<div class="title_large"><a href="http://www.nicovideo.jp/watch/<?=$movie->movie_str?>" target="_blank"><?=$movie->title?></a></div>
 		</div>
 	</div>
 
@@ -27,7 +27,7 @@
 		<?php foreach($movie_b as $b){ ?>
 		<div class="title">
 			<?=date("y/m/d", strtotime($b->published))?>
-			<a href="http://www.nicovideo.jp/watch/sm<?=$b->movie_str?>" target="_blank"><?=mb_strimwidth($b->title,0,48,'…','utf-8')?></a>
+			<a href="http://www.nicovideo.jp/watch/<?=$b->movie_str?>" target="_blank"><?=mb_strimwidth($b->title,0,48,'…','utf-8')?></a>
 		</div>
 		<?php }//foreach ?>
 	</div>
