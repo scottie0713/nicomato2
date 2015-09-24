@@ -32,6 +32,7 @@ class UserController extends AppController
 			$this->redirect('/');
 		}
 
+		// user_mylist取得
 		$user_mylists = $this->UserMylist->getByUserId($user_id);
 		$data_mylist_ids = array();
 		$check_data_mylist_ids = array();
@@ -43,7 +44,10 @@ class UserController extends AppController
 		}
 
         // 更新チェック
-		$this->DataMylist->check($check_data_mylist_ids);
+        if ( count($check_data_mylist_ids) > 0) {
+			$this->DataMylist->check($check_data_mylist_ids);
+        }
+
 		//リスト取得
 		$count = $this->UserMylist->getCount($user_id, null, 0);
 		$mylists = $this->DataMylist->getList($data_mylist_ids, array(), $page, $limit);
