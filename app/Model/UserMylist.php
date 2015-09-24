@@ -77,23 +77,15 @@ class UserMylist extends AppModel
 	 * ユーザＩＤから取得
 	 * @param unknown $user_id
 	 */
-	public function get($user_id) {
+	public function getByUserId($user_id) {
 
 		$params = array(
-			'fields' => 'data_mylist_id',
 			'conditions' => array(
 				'user_id'     => $user_id,
 				'delete_flag' => 0,
 			),
 		);
-
-		$user_mylist = $this->find('all', $params);
-		$res = array();
-		foreach($user_mylist as $mylist){
-			$res[] = $mylist['UserMylist']['data_mylist_id'];
-		}
-
-		return $res;
+		return $this->find('all', $params);
 	}
 
 
@@ -112,6 +104,29 @@ class UserMylist extends AppModel
  AND data_mylist_id = :data_mylist_id";
 		$params = array(
 				'delete_flag'    => $delete_flag,
+				'user_id'        => $user_id,
+				'data_mylist_id' => $data_mylist_id,
+		);
+
+		return $this->query($sql,$params);
+
+	}//function
+
+
+	/**
+	 * check_flag更新
+	 * @param unknown $user_id
+	 * @param unknown $data_mylist_id
+	 * @param unknown $check_flag
+	 */
+	public function updateCheckFlag($user_id, $data_mylist_id, $check_flag){
+		$sql = "
+ UPDATE user_mylists
+ SET check_flag = :check_flag
+ WHERE user_id = :user_id
+ AND data_mylist_id = :data_mylist_id";
+		$params = array(
+				'check_flag'     => $check_flag,
 				'user_id'        => $user_id,
 				'data_mylist_id' => $data_mylist_id,
 		);

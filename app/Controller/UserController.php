@@ -32,9 +32,18 @@ class UserController extends AppController
 			$this->redirect('/');
 		}
 
-		$data_mylist_ids = $this->UserMylist->get($user_id);
+		$user_mylists = $this->UserMylist->getByUserId($user_id);
+		$data_mylist_ids = array();
+		$check_data_mylist_ids = array();
+		foreach($user_mylists as $user_mylist){
+			$data_mylist_ids[] = $user_mylist['UserMylist']['data_mylist_id'];
+			if ($user_mylist['UserMylist']['check_flag'] == 1) {
+				$check_data_mylist_ids[] = $user_mylist['UserMylist']['data_mylist_id'];
+			}
+		}
+
         // 更新チェック
-		$this->DataMylist->check($data_mylist_ids);
+		$this->DataMylist->check($check_data_mylist_ids);
 		//リスト取得
 		$count = $this->UserMylist->getCount($user_id, null, 0);
 		$mylists = $this->DataMylist->getList($data_mylist_ids, array(), $page, $limit);
@@ -95,7 +104,11 @@ class UserController extends AppController
 		}
 		$search_str = $this->request->data('search');
 
-		$data_mylist_ids = $this->UserMylist->get($user_id);
+		$user_mylists = $this->UserMylist->getByUserId($user_id);
+		$data_mylist_ids = array();
+		foreach($user_mylists as $user_mylist){
+			$data_mylist_ids[] = $user_mylist['UserMylist']['data_mylist_id'];
+		}
 		$mylists = $this->DataMylist->searchList($data_mylist_ids, $search_str);
 		$users = $this->User->get($user_id);
 
@@ -184,6 +197,10 @@ class UserController extends AppController
 				$this->UserMylist->updateDeleteFlag($user_id, $data_mylist['DataMylist']['id'], 1);
 			} else if($mode == 'delete_off') {
 				$this->UserMylist->updateDeleteFlag($user_id, $data_mylist['DataMylist']['id'], 0);
+			} else if($mode == 'check_on' ) {
+				$this->UserMylist->updateCheckFlag($user_id, $data_mylist['DataMylist']['id'], 1);
+			} else if($mode == 'check_off') {
+				$this->UserMylist->updateCheckFlag($user_id, $data_mylist['DataMylist']['id'], 0);
 			} else {
 				$res['msg'] = '無効なパラメータです';
 				$res['code']= 'param_err';

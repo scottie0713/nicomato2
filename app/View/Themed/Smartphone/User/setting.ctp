@@ -43,7 +43,12 @@ echo $this->Html->css('user/m_setting.css');
 	<input id="add_mylist_submit" type="submit" value="追加" />
 
 
-	<h3>登録ボックスの削除</h3>
+	<h3>登録ボックスの削除 / 更新状態の切り替え</h3>
+	<div style="font-size:11px;">
+		更新状態とは：<br/>
+		「非更新」にすると、公式へ自動更新チェックをしなくなります。<br/>
+		チェック数が減ることでページの読込の高速化につながります。
+	</div>
 	<table>
 		<?php foreach ($mylists as $m): ?>
 		<?php $movie = json_decode($m['d']['last_movie_data']); ?>
@@ -55,7 +60,7 @@ echo $this->Html->css('user/m_setting.css');
 				画像なし
 				<?php }//?>
 			</td>
-			<td width="100">
+			<td width="60">
 				<?php if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_MYLIST){ ?>
 					<a href="http://www.nicovideo.jp/mylist/<?=$m['d']['mylist_str']?>" target="_blank">マイリスト</a>
 				<?php }else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_USER){ ?>
@@ -72,9 +77,16 @@ echo $this->Html->css('user/m_setting.css');
 			</td>
 			<td width="40" class="td_switch">
 				<?php if( $m['u']['delete_flag'] == 1){?>
-				<div class="delete_btn delete_on" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">削除</div>
+				<div class="setting_btn delete_on" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">削除</div>
 				<?php } else { ?>
-				<div class="delete_btn delete_off" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">表示</div>
+				<div class="setting_btn delete_off" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">表示</div>
+				<?php }//if ?>
+			</td>
+			<td width="40" class="td_switch">
+				<?php if( $m['u']['check_flag'] == 1){?>
+				<div class="setting_btn check_on" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">更新</div>
+				<?php } else { ?>
+				<div class="setting_btn check_off" data_type="<?=$m['d']['data_type']?>" mylist_str="<?=$m['d']['mylist_str']?>">非更新</div>
 				<?php }//if ?>
 			</td>
 
