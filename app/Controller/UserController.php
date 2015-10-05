@@ -258,7 +258,7 @@ class UserController extends AppController
 						$user_mylist = array(
 							'user_id' => $user_id,
 							'data_mylist_id' => $data_mylist_id,
-							'check_flag' => 0,
+							'check_flag' => 1,
 							'delete_flag'=> 0,
 							'created_at' => date("Y-m-d H:i:s"),
 							'updated_at' => date("Y-m-d H:i:s"),
