@@ -24,7 +24,7 @@ echo $this->Html->css('bbs/index', array('inline'=>false));
 	<h2>コメントフォーム</h2>
 	<form action="/bbs/commit" method="POST">
 		<textarea name="data[comment]" rows="10" cols="60"></textarea><br/>
-		<input type="submit" value="送信" />
+		<input type="submit" value="工事中" disabled/>
 	</form>
 
 

@@ -26,7 +26,7 @@ class BbsController extends AppController {
     }//function
 
     /**
-     * 
+     *
 	 * @param post title セッション
 	 * @param post url マイリスト/ユーザURL
 	 * @param post password マイリスト/ユーザURL
@@ -34,7 +34,7 @@ class BbsController extends AppController {
     public function commit() {
 
 		$comment = $this->request->data('comment');
-		$this->TblBoard->add(htmlspecialchars($comment, ENT_QUOTES, 'UTF-8'));
+		//$this->TblBoard->add(htmlspecialchars($comment, ENT_QUOTES, 'UTF-8'));
 		$this->redirect('/bbs/index');
 	}//function
 
