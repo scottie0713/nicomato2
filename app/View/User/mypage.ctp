@@ -38,7 +38,7 @@ echo $this->Html->css('user/mypage', array('inline'=>false));
 			<option value="60">60件</option>
 			<option value="100">100件</option>
 		</select>
-		<input type="submit" value="変更" />
+		<input type="submit" value="工事中" disabled/>
 	</form>
 	</div>
 
