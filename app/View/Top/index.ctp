@@ -82,8 +82,8 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	<br/>
 	現在暫定的に次のように設定されていますが、状況によっては変更することがあります。<br/>
 	・ 1ヶ月以内に投稿があったものは、最終チェック時から<span style="color:red">10分間</span>は次回更新チェックできません。<br/>
-	・ 1ヶ月～半年前に投稿があったものは、最終チェック時から<span style="color:red">24時間</span>は次回更新チェックできません。<br/>
-	・ 半年以上投稿がないものは、最終チェック時から<span style="color:red">3日間</span>は次回更新チェックできません。<br/>
+	・ 1ヶ月～半年前に投稿があったものは、最終チェック時から<span style="color:red">12時間</span>は次回更新チェックできません。<br/>
+	・ 半年以上投稿がないものは、最終チェック時から<span style="color:red">24時間</span>は次回更新チェックできません。<br/>
 	</div>
 
 	<h2>困ったとき</h2>

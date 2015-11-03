@@ -426,9 +426,9 @@ class DataMylist extends AppModel
 		if (($dt - $p_dt) <= (86400*30) ) {
 			return date("Y-m-d H:i:s", strtotime("10 minute", $dt));
 		} else if(($dt - $p_dt) <= (86400*180)){
-			return date("Y-m-d H:i:s", strtotime("24 hour", $dt));
+			return date("Y-m-d H:i:s", strtotime("12 hour", $dt));
 		} else {
-			return date("Y-m-d H:i:s", strtotime("3 day", $dt));
+			return date("Y-m-d H:i:s", strtotime("1 day", $dt));
 		}
 	}
 
