@@ -11,7 +11,7 @@ class DataMylist extends AppModel
 	 */
 	public function check($ids, $all_flag = false) {
 		$id_str = implode(",", $ids);
-		$sql = "SELECT * FROM {$this->useTable} WHERE id IN({$id_str}) AND next_check_at <= :dt LIMIT 100;";
+		$sql = "SELECT * FROM {$this->useTable} WHERE id IN({$id_str}) AND next_check_at <= :dt LIMIT 400;";
 		if ($all_flag) {
 			$params = array('dt'=> '2100-01-01 00:00:00');
 		} else {
@@ -44,7 +44,7 @@ class DataMylist extends AppModel
 				'id'                => $d['id'],
 			);
 			$this->query($sql,$params);
-			usleep(10000);
+			usleep(1000);
 		}//foreach
 
 		return;
