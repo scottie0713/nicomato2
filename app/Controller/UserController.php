@@ -35,15 +35,15 @@ class UserController extends AppController
 		$all_check_flag = false;
 
 		if ($this->request->is('post')) {
-			$limit = $this->request->data('mypage_limit') || USER_MYPAGE_LIST_LIMIT;
+			$limit = $this->request->data('limit') || USER_MYPAGE_LIST_LIMIT;
 
-			$this->Cookie->write("mypage_limit", $limit, false, (3600*24*7));
+			$this->Cookie->write("mypage_{$user_id}_limit", $limit, false, (3600*24*7));
 
 			if($this->request->data('all_check') == 1){
 				$all_check_flag = true;
 			}
 		} else{
-			$limit = $this->Cookie->read('mypage_limit');
+			$limit = $this->Cookie->read('mypage_{$user_id}_limit');
 			if ((int)$limit <= 0){
 				$limit = USER_MYPAGE_LIST_LIMIT;
 			}
