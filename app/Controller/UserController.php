@@ -22,7 +22,7 @@ class UserController extends AppController
 	 * @param user_id ユーザＩＤ
 	 * @param page    ページ番号
      */
-    public function mypage($user_id, $page = 1, $limit = USER_MYPAGE_LIST_LIMIT) {
+    public function mypage($user_id, $page = 1) {
 
 		// 無効なユーザＩＤならリダイレクト
 		if (is_null($user_id) || $user_id == 0) {
@@ -31,6 +31,25 @@ class UserController extends AppController
 		if (count($this->User->get($user_id)) == 0) {
 			$this->redirect('/');
 		}
+
+		$all_check_flag = false;
+
+		if ($this->request->is('post')) {
+			$limit = $this->request->data('mypage_limit') || USER_MYPAGE_LIST_LIMIT;
+
+			$this->Cookie->write("mypage_limit", $limit, false, (3600*24*7));
+
+			if($this->request->data('all_check') == 1){
+				$all_check_flag = true;
+			}
+		} else{
+			$limit = $this->Cookie->read('mypage_limit');
+			if ((int)$limit <= 0){
+				$limit = USER_MYPAGE_LIST_LIMIT;
+			}
+		}
+
+		var_dump($all_check_flag);
 
 		// user_mylist取得
 		$user_mylists = $this->UserMylist->getByUserId($user_id);
@@ -45,16 +64,16 @@ class UserController extends AppController
 
         // 更新チェック
         if ( count($check_data_mylist_ids) > 0) {
-			$this->DataMylist->check($check_data_mylist_ids);
+			$this->DataMylist->check($check_data_mylist_ids, $all_check_flag);
         }
 
 		//リスト取得
-		$count = $this->UserMylist->getCount($user_id, null, 0);
+		$count   = $this->UserMylist->getCount($user_id, null, 0);
 		$mylists = $this->DataMylist->getList($data_mylist_ids, array(), $page, $limit);
-		$users = $this->User->get($user_id);
+		$users   = $this->User->get($user_id);
 
-        // 値をセット
-        $this->set(compact('mylists','user_id','users'));
+		// 値をセット
+		$this->set(compact('mylists','user_id','users'));
 		$this->set('page', $page);
 		$this->set('page_max', ceil($count / USER_MYPAGE_LIST_LIMIT));
     }
@@ -348,6 +367,10 @@ class UserController extends AppController
     }
 
 
+
+
+
+
     private function checkSession($user_id,$session)
     {
         $users = $this->User->find('first', array(
@@ -356,6 +379,7 @@ class UserController extends AppController
             ));
 		return ($session == $users['User']['session']);
     }
+
 
 
 

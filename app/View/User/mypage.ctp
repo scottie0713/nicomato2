@@ -22,21 +22,45 @@ echo $this->Html->css('user/mypage', array('inline'=>false));
 
 	<!-- マイページ名 -->
 	<h2>
-		<?=$users['User']['title']?>&nbsp;
-		<a style="color:#fff" href="/user/setting/<?=$user_id?>">[編集]</a>
+		<?=$users['User']['title']?>
+		&nbsp;<a style="color:#fff" href="/user/setting/<?=$user_id?>">[編集]</a>
 	</h2>
 
+	<!-- ソート -->
+	<div id="top_limit">
+	<form action="/user/mypage/<?=$user_id?>" method="POST">
+		<input type="hidden" name="page" value="1" />
+		<select name="limit">
+			<option value="12">12件</option>
+			<option value="24">24件</option>
+			<option value="32">32件</option>
+			<option value="48">48件</option>
+			<option value="60">60件</option>
+			<option value="100">100件</option>
+		</select>
+		<input type="submit" value="変更" />
+	</form>
+	</div>
+
 	<!-- 検索窓 -->
-	<div style="margin:10px 0px 10px 40px">
+	<div id="top_search">
 	<form action="/user/search/<?=$user_id?>" method="POST">
 		<input type="text" name="search" val="" />
 		<input type="submit" value="動画名で検索" />
 	</form>
 	</div>
 
+	<!-- 手動更新 -->
+	<div id="top_update">
+	<form action="/user/mypage/<?=$user_id?>" method="POST">
+		<input type="hidden" name="all_check" value="1" />
+		<input type="submit" value="手動更新" />
+	</form>
+	</div>
+
 	<!-- ページャ -->
 	<?=$this->element('pager',array('link'=>"/user/mypage/{$user_id}"));?>
-	
+
 	<!-- マイリストＢＯＸ -->
 	<?php
 		foreach ($mylists as $m) {

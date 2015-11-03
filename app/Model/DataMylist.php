@@ -9,10 +9,14 @@ class DataMylist extends AppModel
 	 *	更新チェック
 	 *  @param array mylist_strs
 	 */
-	public function check($ids) {
+	public function check($ids, $all_flag = false) {
 		$id_str = implode(",", $ids);
 		$sql = "SELECT * FROM {$this->useTable} WHERE id IN({$id_str}) AND next_check_at <= :dt LIMIT 100;";
-		$params = array( 'dt'=> date("Y-m-d H:i:s") );
+		if ($all_flag) {
+			$params = array('dt'=> '2100-01-01 00:00:00');
+		} else {
+			$params = array('dt'=> date("Y-m-d H:i:s"));
+		}
 		$data_mylist = $this->query($sql,$params);
 
 		$this->log("checking: ".count($data_mylist), LOG_DEBUG);
