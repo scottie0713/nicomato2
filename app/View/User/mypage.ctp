@@ -31,12 +31,12 @@ echo $this->Html->css('user/mypage', array('inline'=>false));
 	<form action="/user/mypage/<?=$user_id?>" method="POST">
 		<input type="hidden" name="page" value="1" />
 		<select name="limit">
-			<option value="12">12件</option>
-			<option value="24">24件</option>
-			<option value="32">32件</option>
-			<option value="48">48件</option>
-			<option value="60">60件</option>
-			<option value="100">100件</option>
+			<option value="12"  <?php if($limit==12 ){echo"selected"}?>>12件</option>
+			<option value="24"  <?php if($limit==24 ){echo"selected"}?>>24件</option>
+			<option value="32"  <?php if($limit==32 ){echo"selected"}?>>32件</option>
+			<option value="48"  <?php if($limit==48 ){echo"selected"}?>>48件</option>
+			<option value="60"  <?php if($limit==60 ){echo"selected"}?>>60件</option>
+			<option value="100" <?php if($limit==100){echo"selected"}?>>100件</option>
 		</select>
 		<input type="submit" value="変更" />
 	</form>

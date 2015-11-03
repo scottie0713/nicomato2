@@ -35,15 +35,13 @@ class UserController extends AppController
 		$all_check_flag = false;
 
 		if ($this->request->is('post')) {
-			$limit = $this->request->data('limit') || USER_MYPAGE_LIST_LIMIT;
-
+			$limit = $this->request->data('limit');
 			$this->Cookie->write("mypage_{$user_id}_limit", $limit, false, (3600*24*7));
-
 			if($this->request->data('all_check') == 1){
 				$all_check_flag = true;
 			}
 		} else{
-			$limit = $this->Cookie->read('mypage_{$user_id}_limit');
+			$limit = $this->Cookie->read("mypage_{$user_id}_limit");
 			if ((int)$limit <= 0){
 				$limit = USER_MYPAGE_LIST_LIMIT;
 			}
@@ -71,9 +69,9 @@ class UserController extends AppController
 		$users   = $this->User->get($user_id);
 
 		// 値をセット
-		$this->set(compact('mylists','user_id','users'));
+		$this->set(compact('mylists','user_id','users','limit'));
 		$this->set('page', $page);
-		$this->set('page_max', ceil($count / USER_MYPAGE_LIST_LIMIT));
+		$this->set('page_max', ceil($count / $limit));
     }
 
 	/**
