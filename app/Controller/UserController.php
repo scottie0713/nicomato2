@@ -49,8 +49,6 @@ class UserController extends AppController
 			}
 		}
 
-		var_dump($all_check_flag);
-
 		// user_mylist取得
 		$user_mylists = $this->UserMylist->getByUserId($user_id);
 		$data_mylist_ids = array();
