@@ -77,7 +77,7 @@ echo $this->Html->css('user/setting.css');
 				<?php }else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_BLOMAGA){ ?>
 					<a href="http://ch.nicovideo.jp/<?=$m['d']['mylist_str']?>/blomaga" target="_blank">CHブロマガ</a>
 				<?php }else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST){ ?>
-					<a href="https://www.youtube.com/watch?<?=$m['d']['mylist_str']?>" target="_blank">Youtubeプレイリスト</a>
+					<a href="https://www.youtube.com/playlist?list=<?=$m['d']['mylist_str']?>" target="_blank">Youtubeプレイリスト</a>
 				<?php }//if ?>
 			</td>
 			<td width="*">
@@ -119,7 +119,7 @@ echo $this->Html->css('user/setting.css');
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_BLOMAGA){
 				$url .= "http://ch.nicovideo.jp/{$m['d']['mylist_str']}/blomaga\n";
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST){
-				$url .= "https://www.youtube.com/watch?{$m['d']['mylist_str']}\n";
+				$url .= "https://www.youtube.com/playlist?list={$m['d']['mylist_str']}\n";
 			}//if
 		}//foreach
 	?>
