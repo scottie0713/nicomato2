@@ -1,9 +1,9 @@
 <article class="mylist_box box_crimson">
 
 	<!-- BOX上部分 -->
-	<div class="mylist_box_top">
+	<div class="mylist_box_top" style="color:white;">
 		<?php if($v['title'] == ''){$v['title']='要確認';} ?>
-		<a href="https://www.youtube.com/watch?v=<?=$v['mylist_str']?>" target="_blank"><?=mb_strimwidth($v['author'].' : '.$v['title'],0,52,'…','utf-8')?></a>
+		<?=mb_strimwidth($v['author'].' : '.$v['title'],0,52,'…','utf-8')?>
 	</div>
 
 	<!-- BOX中部分 -->
@@ -35,7 +35,7 @@
 		<?php foreach($movie_b as $b){ ?>
 		<div class="init_title">
 			<?=date("y/m/d", strtotime($b->published))?>
-			<a href="https://www.youtube.com/watch<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
+			<a href="https://www.youtube.com/watch?v=<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
 		</div>
 		<?php }//foreach ?>
 		<div class="detail_title"></div>
