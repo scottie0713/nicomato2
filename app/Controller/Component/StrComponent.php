@@ -25,11 +25,12 @@ class StrComponent extends Component {
 		} else if(
 			$this->getDataType($str) == DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST
 		) {
-			$tmp_str = preg_replace("/^https:\/\/www.youtube.com\/watch\?v=[^&]+\&list=([\w\-]+)$/", "\\1", $str);
-			if(!$tmp_str){
-            	$tmp_str = preg_replace("/^https:\/\/www.youtube.com\/playlist\?list=([\w\-]+)$/", "\\1", $str);
+			if(preg_match("/\/watch/", $str)) {
+			    $str = preg_replace("/^https:\/\/www.youtube.com\/watch\?v=[^&]+\&list=([\w\-]+)$/", "\\1", $str);
+			} else if(preg_match("/\/playlist/", $str)){
+            	$str = preg_replace("/^https:\/\/www.youtube.com\/playlist\?list=([\w\-]+)$/", "\\1", $str);
 			}
-			return $tmp_str;
+			return (preg_match("/^[\w\-]+$/", $str)) ? $str : false;
 		}
         
 	}//function
