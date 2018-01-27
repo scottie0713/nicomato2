@@ -27,7 +27,7 @@
 		<?php foreach($movie_b as $b){ ?>
 		<div class="title">
 			<?=date("y/m/d", strtotime($b->published))?>
-			<a href="<?=$b->link?>" target="_blank"><?=mb_strimwidth($b->title,0,48,'…','utf-8')?></a>
+			<a href="<?=$b->link?>" target="_blank"><?=$b->title?></a>
 		</div>
 		<?php }//foreach ?>
 	</div>

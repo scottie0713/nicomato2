@@ -178,6 +178,9 @@ class DataMylist extends AppModel
 			case DATA_MYLIST_DATA_TYPE_BLOMAGA:
 				return $this->getChannelBlomagaByRss($mylist_str, $max_cnt);
 				break;
+			case DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST:
+				return $this->getYoutubePlaylistByRss($mylist_str, $max_cnt);
+				break;
 			default:
 				return false;
 		}
@@ -401,6 +404,75 @@ class DataMylist extends AppModel
 		$data_mylist['before_movie_data'] = json_encode($before_movie_data);
 		$data_mylist['last_published_at'] = $last_published_at;
 		return $data_mylist;
+	}//function
+
+	/**
+	 *	[youtube]プレイリストを取得
+	 *
+	 */
+	public function getYoutubePlaylistByRss($mylist_str, $max_cnt)
+	{
+		$json = $this->getRss("https://www.googleapis.com/youtube/v3/playlists?part=snippet&id={$mylist_str}&maxResults=1&key=AIzaSyCpWJ6athX8UcXf2zjdQSOBnjDgZZSDy-g");
+		$result = json_decode($json);
+
+		$title  = 'notitle';
+		$author = 'nochannelname';
+		if($result->pageInfo->totalResults > 0)
+		{
+			foreach($result->items as $item)
+			{
+			    $title  = $item->snippet->title;
+				$author = $item->snippet->channelTitle;
+			}
+		}
+
+		// 全件取る（APIでソートできないため）
+		$all_movie_data = array();
+		do
+		{
+			$json = $this->getRss("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId={$mylist_str}&maxResults=50&key=AIzaSyCpWJ6athX8UcXf2zjdQSOBnjDgZZSDy-g");
+			$result = json_decode($json);
+
+			if($result->pageInfo->totalResults == 0)
+			{
+				return array(
+					'title'  => 'ページが見つかりません',
+					'author' => '',
+					'last_movie_data' => json_encode(array()),
+					'before_movie_data' => json_encode(array()),
+					'last_published_at' => '2000-01-01 00:00:00',
+				);
+			}
+			
+			foreach($result->items as $item)
+			{
+				$all_movie_data[] = array(
+				    'movie_str' => $item->snippet->playlistId,
+					'title'     => $item->snippet->title, 
+                    'published' => $item->snippet->publishedAt,
+					'image'     => $item->snippet->thumbnails->default,
+				);
+			}
+
+			$next_token = isset($result->nextPageToken) ? $result->nextPageToken : NULL;
+		} while($next_token);
+
+		$tmpArray = array();
+		foreach ( $all_movie_data as $key => $row ) {
+			$tmpArray[$key] = $row['published'];
+		}
+		array_multisort( $tmpArray, SORT_DESC, $all_movie_data);
+
+		$last_movie_data   = array_slice($all_movie_data, 0, 1);
+		$before_movie_data = array_slice($all_movie_data, 1, ($max_cnt - 1));
+
+		return array(
+			'title'  => $title,
+			'author' => $author,
+			'last_movie_data' => json_encode($last_movie_data),
+			'before_movie_data' => json_encode($before_movie_data),
+			'last_published_at' => $last_movie_data[0]['published'],
+		);
 	}//function
 
 

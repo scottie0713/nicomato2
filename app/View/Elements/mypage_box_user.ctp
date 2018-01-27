@@ -25,10 +25,11 @@
 	<?php if (count($movie_b)>0){ ?>
 	<div class="mylist_box_bottom">
 		<?php foreach($movie_b as $b){ ?>
-		<div class="title">
+		<div class="init_title">
 			<?=date("y/m/d", strtotime($b->published))?>
-			<a href="http://www.nicovideo.jp/watch/<?=$b->movie_str?>" target="_blank"><?=mb_strimwidth($b->title,0,48,'…','utf-8')?></a>
+			<a href="http://www.nicovideo.jp/watch/<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
 		</div>
+		<div class="detail_title"></div>
 		<?php }//foreach ?>
 	</div>
 	<?php }//if ?>
@@ -39,6 +40,6 @@
 		最終チェック:<?=date("Y/m/d H:i", strtotime($v['updated_at']))?>
 	</div>
 
-	<!-- BOX more..部分 -->
-	<div class="mylist_box_more" type="2" str="<?=$v['mylist_str']?>">more...</div>
+	<!-- BOX more 部分 -->
+	<div class="mylist_box_more bottom_open" type="2" str="<?=$v['mylist_str']?>">more</div>
 </article>

@@ -7,7 +7,7 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 <div>
 
 	<h2>はじめに</h2>
-	<h3>にこまと！って？</h3>
+	<h3>にこまと！2.0について</h3>
 	<div style="margin-left:20px; font-size:14px;">
 		<span style="color:blue">「気になるマイリストに動画が追加されたかな？」</span><br/>
 		<span style="color:blue">「気になるユーザが動画投稿したかな？」</span><br/>
@@ -30,17 +30,14 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	<div style="margin-left:20px; font-size:14px;">
 		URLは同じです。機能はPC版とほぼ同じです。
 	</div>
-	<h3>前バージョンから利用されている方へ</h3>
+	<h3>旧にこまと！(ニコニコ動画マイリストまとめてチェッカー)を利用している方へ</h3>
 	<div style="margin-left:20px; font-size:14px;">
 		<span style="color:red">
-			前バージョンの更新チェック機能はストップしました。<br/>
+		    データの互換性はありません。(お互いにデータは独立しています)<br/>
 		</span>
-		これまでのマイページのデータは引き継がれてます。<br/>
-		編集用<b>パスワードもそのまま引き継がれています。</b>
-		<br/>
-		マイページＩＤ(URLの後ろについている６桁の数字のこと)もそのままですが、先頭の0は省略されます。<br/>
-		(000012 なら、今バージョンから12になります)
 	</div>
+	<br />
+	<br />
 
 
 	<h2>更新チェックページ新規作成</h2>
@@ -71,7 +68,8 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	<div style="margin-left:20px; font-size:14px;">
 	    <input id="regist_submit" type="submit" value="登録" />
 	</div>
-
+    <br />
+	<br />
 
 	<h2>各種仕様</h2>
 	<h3>更新チェックについて</h3>
@@ -85,6 +83,8 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	・ 1ヶ月～半年前に投稿があったものは、最終チェック時から<span style="color:red">12時間</span>は次回更新チェックできません。<br/>
 	・ 半年以上投稿がないものは、最終チェック時から<span style="color:red">24時間</span>は次回更新チェックできません。<br/>
 	</div>
+	<br />
+	<br />
 
 	<h2>困ったとき</h2>
 	<h3>自分の作ったマイページがどこにあるかわからない・ブックマークし忘れた</h3>
@@ -98,6 +98,8 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	削除機能はありません。放置してください。<br/>
 	一定期間放置されたページを管理人が削除します。
 	</div>
+	<br />
+	<br />
 
 	<h3>パスワード忘れた・・・</h3>
 	<div style="margin-left:20px; font-size:14px;">

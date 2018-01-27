@@ -12,6 +12,7 @@
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		echo $this->fetch('image');
 	?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -24,32 +25,40 @@
 
 </script>
 </head>
-<body>
-  <!-- 左広告枠 -->
+<body style="background-image:url(<?=$this->webroot ?>img/common/light_linen_v2.png);">
+  <!-- 左広告枠
   <div id="left_ad">
     <?=$ad_amazon?>
     <?=$ad_dmm?>
   </div>
+  -->
 
-  <!-- メイン -->
   <div id="container">
-    <!-- header -->
-    <div id="header">
-      <div class="left"><img src="/img/common/logo_l.png"></div>
-      <div id="menu">
-	    <a href="/">トップ</a>&nbsp;|&nbsp;
-        <a href="/top/latest">最新動画</a>&nbsp;|&nbsp;
-        <a href="/top/mypagelist">ページ一覧</a>&nbsp;|&nbsp;
-        <a href="/bbs/index">意見箱</a>
-	  </div>
-	  <div id="information">
-  		<span style="font-size:14px;">- 試験運転中 -</span><br/>
-		こちらで追加されたデータは、前バージョンには反映されません。<br/>
-		15/11/3 手動更新機能追加。１頁の表示件数設定機能追加。更新チェックの時間仕様を変更しました。
-	  </div>
-    </div>
-    <!--/header -->
+  	<!-- ロゴ -->
+    <div id="logo"><?=$this->Html->image("common/logo_l.png", array("width"=>200)) ?></div>
 
+    <!-- ninja admax -->
+	<div id="ad_header">
+      <script src="//adm.shinobi.jp/s/2969f298024310456dae2a539f152bcb"></script>
+	</div>
+	
+	<!-- お知らせ
+	<div id="information">
+	  こちらで追加されたデータは、前バージョンには反映されません。<br/>
+	</div>
+	-->
+
+	<!-- メニュー -->
+	<div id="menu">
+	  <div id="menu_content">
+	    &nbsp;&nbsp;[動画更新チェックmenu]&nbsp;
+	    <?= $this->Html->link("トップ", "/") ?>&nbsp;|&nbsp;
+	    <?= $this->Html->link("最新動画", "/top/latest") ?>&nbsp;|&nbsp;
+	    <?= $this->Html->link("ページ一覧", "/top/mypagelist") ?>&nbsp;
+	    &nbsp;&nbsp;[新コンテンツmenu]&nbsp;
+	    <?= $this->Html->link("開発中", "/spot/index") ?>
+	  </div>
+	</div>
 
     <!-- middle -->
     <div id="content">

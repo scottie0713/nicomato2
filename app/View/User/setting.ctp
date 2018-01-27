@@ -51,12 +51,12 @@ echo $this->Html->css('user/setting.css');
 
 	<h3>登録ボックスの削除 / 更新状態の切り替え</h3>
 	<div style="margin-left:40px">
-		<div style="font-size:11px;">
+		<div style="font-size:13px;">
 			更新状態とは：<br/>
 			「非更新」にすると、公式へ自動更新チェックをしなくなります。<br/>
 			チェック数が減ることでページの読込の高速化につながります。
 		</div>
-	<table>
+	<table style="font-size:12px">
 		<?php foreach ($mylists as $m): ?>
 		<?php $movie = json_decode($m['d']['last_movie_data']); ?>
 		<tr>
