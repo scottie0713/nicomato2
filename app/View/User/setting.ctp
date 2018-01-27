@@ -37,10 +37,14 @@ echo $this->Html->css('user/setting.css');
 	<div style="font-size:11px;">
 		次の形でURLを入れてください。<br/>
 		<span style="color:#060;">
+		ニコニコ動画：<br />
 		公開マイリスト: http://www.nicovideo.jp/mylist/【数字】<br/>
 		ユーザ投稿動画: http://www.nicovideo.jp/user/【数字】<br/>
 		CHのブロマガ　: http://ch.nicovideo.jp/【文字列】/blomaga<br/>
 		CHの生放送　　: http://ch.nicovideo.jp/【文字列】/live<br/>
+		<br />
+		youtube：<br />
+		プレイリスト： https://www.youtube.com/playlist?list=【文字列】 または https://www.youtube.com/watch?v=【文字列】&list=【文字列】<br />
 		</span>
 		<span style="color:orange">※１行に１ＵＲＬでお願いします。</span><br/>
 	</div>

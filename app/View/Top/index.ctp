@@ -35,6 +35,7 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 		②ユーザ投稿動画<br/>
 		③チャンネルのブロマガ<br/>
 		④チャンネル生放送<br/>
+		⑤Youtubeのプレイリスト(再生リスト) <span style="color:red">NEW!</span><br/>
 		</span>
 		<span style="color:red;">
 			※ブロマガと生放送は同じチャンネルでも別扱いとなります。
@@ -64,10 +65,14 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 	<div style="margin-left:20px; font-size:14px;">
 		次の形でURLを入れてください。<br/>
 		<span style="color:#060;">
+		ニコニコ動画：<br />
 		公開マイリスト: http://www.nicovideo.jp/mylist/【数字】<br/>
 		ユーザ投稿動画: http://www.nicovideo.jp/user/【数字】<br/>
 		CHのブロマガ　: http://ch.nicovideo.jp/【文字列】/blomaga<br/>
 		CHの生放送　　: http://ch.nicovideo.jp/【文字列】/live<br/>
+		<br />
+		youtube：<br />
+		プレイリスト： https://www.youtube.com/playlist?list=【文字列】 または https://www.youtube.com/watch?v=【文字列】&list=【文字列】<br />
 		</span>
 		<span style="color:orange">※１行に１ＵＲＬでお願いします。</span><br/>
 		<textarea id="url" rows="10" cols="60"></textarea>

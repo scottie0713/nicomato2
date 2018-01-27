@@ -5,13 +5,16 @@ echo $this->Html->css('top/latest', array('inline'=>false));
 ?>
 <div>
 
-	<h2>にこまと！登録 最新動画</h2>
+	<h2>にこまと！登録 最新動画&nbsp;(※youtubeは含みません)</h2>
 
 	<?=$this->element('pager',array('link'=>'/top/latest'));?>
 
 	<?php foreach ($mylists as $m): ?>
 	<?php
 		$v = $m['DataMylist'];
+		if($v['data_type'] == 5){
+            continue;
+		}
 		$movie = json_decode($v['last_movie_data']);
 	?>
 	<article class="mylist_box box_black" value="<?=$v['mylist_str']?>">
