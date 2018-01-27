@@ -25,7 +25,6 @@ class StrComponent extends Component {
 		} else if(
 			$this->getDataType($str) == DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST
 		) {
-			echo "$str<br />";
 			$str = preg_replace("/^https:\/\/www.youtube.com\/watch\?v=[^&]+\&list=([\w\-]+).*$/", "\\1", $str);
 			return (preg_match("/^[\w\-]+$/", $str)) ? $str : false;
 		}
