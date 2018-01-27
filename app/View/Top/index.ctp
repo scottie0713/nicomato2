@@ -5,6 +5,20 @@ echo $this->Html->script('top/index.js', array('inline'=>false));
 //echo $this->Html->css('page/regist.css');
 ?>
 <div>
+	<h2>更新情報</h2>
+	<h3>2018/01/27 更新情報をTwitterにしました。</h3>
+	<div style="margin-left:20px;">
+	基本放置な当サイトですが、更新情報とかこちらに載せます。掲示板やお知らせの代わりに。
+	<div style="border:1px solid; width:400px;">
+	<!-- start TweetsWind code -->
+	<iframe     scrolling="no" frameborder="0" id="twitterWindIframe"     style="width:400px;height:400px; border:none;"     src="http://www.tweetswind.com/show?option=%7B%22isOnlyMe%22%3A%20%22false%22%2C%20%22twitterwind_frame_width%22%3A%20%22400%22%2C%20%22twitterwind_frame_height%22%3A%20%22400%22%2C%20%22twitterwind_frame_border%22%3A%20%22none%22%2C%20%22twitterwind_frame_border_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_base_font_size%22%3A%20%2212%22%2C%20%22twitterwind_logoimage%22%3A%20%22blueonwhite%22%2C%20%22twitterwind_username%22%3A%20%22on%22%2C%20%22twitterwind_username_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_username_color%22%3A%20%22333333%22%2C%20%22twitterwind_username_follow%22%3A%20%22on%22%2C%20%22twitterwind_max_length%22%3A%20%2239%22%2C%20%22twitterwind_logo_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit%22%3A%20%22on%22%2C%20%22twitterwind_twit_scroll_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_twit_scroll_bg_color%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_color%22%3A%20%22333333%22%2C%20%22twitterwind_twit_link_color%22%3A%20%220084B4%22%2C%20%22twitterwind_opacity%22%3A%20%22off%22%2C%20%22twitterwind_follower%22%3A%20%22inherit%22%2C%20%22twitterwind_follower_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22usn%22%3A%20%22162498%22%7D"     > </iframe>
+	<!--利用規約に従ってページ内に必ずリンクを表示してください-->
+	<div style="font-size:12px; text-align:right; width:400px"><a target="_blank" href="http://www.tweetswind.com">TweetsWind</a></div> 
+	<!-- end TweetsWind code -->
+	</div>
+	</div>
+	<br />
+	<br />
 
 	<h2>はじめに</h2>
 	<h3>にこまと！2.0について</h3>
