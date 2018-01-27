@@ -35,7 +35,7 @@
 		<?php foreach($movie_b as $b){ ?>
 		<div class="init_title">
 			<?=date("y/m/d", strtotime($b->published))?>
-			<a href="http://www.nicovideo.jp/watch/<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
+			<a href="https://www.youtube.com/watch<?=$b->movie_str?>" target="_blank"><?=$b->title?></a>
 		</div>
 		<?php }//foreach ?>
 		<div class="detail_title"></div>

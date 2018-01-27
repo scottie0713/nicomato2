@@ -412,6 +412,7 @@ class DataMylist extends AppModel
 	 */
 	public function getYoutubePlaylistByRss($mylist_str, $max_cnt)
 	{
+		$mylist_str = preg_replace("/^[^&]+\&list=([\w\-]+).*$/", "$1", $mylist_str);
 		$json = $this->getRss("https://www.googleapis.com/youtube/v3/playlists?part=snippet&id={$mylist_str}&maxResults=1&key=AIzaSyCpWJ6athX8UcXf2zjdQSOBnjDgZZSDy-g");
 		$result = json_decode($json);
 
@@ -450,7 +451,7 @@ class DataMylist extends AppModel
 				    'movie_str' => $item->snippet->playlistId,
 					'title'     => $item->snippet->title, 
                     'published' => $item->snippet->publishedAt,
-					'image'     => $item->snippet->thumbnails->default,
+					'image'     => $item->snippet->thumbnails->default->url,
 				);
 			}
 
@@ -469,7 +470,7 @@ class DataMylist extends AppModel
 		return array(
 			'title'  => $title,
 			'author' => $author,
-			'last_movie_data' => json_encode($last_movie_data),
+			'last_movie_data' => json_encode($last_movie_data[0]),
 			'before_movie_data' => json_encode($before_movie_data),
 			'last_published_at' => $last_movie_data[0]['published'],
 		);
