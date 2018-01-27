@@ -448,7 +448,7 @@ class DataMylist extends AppModel
 			foreach($result->items as $item)
 			{
 				$all_movie_data[] = array(
-				    'movie_str' => $item->snippet->videoId,
+				    'movie_str' => $item->snippet->resourceId->videoId,
 					'title'     => $item->snippet->title, 
                     'published' => $item->snippet->publishedAt,
 					'image'     => $item->snippet->thumbnails->default->url,
