@@ -464,7 +464,7 @@ class DataMylist extends AppModel
 		array_multisort( $tmpArray, SORT_DESC, $all_movie_data);
 
 		$last_movie_data   = array_slice($all_movie_data, 0, 1);
-		$before_movie_data = array_slice($all_movie_data, 1, ($max_cnt - 1));
+		$before_movie_data = array_slice($all_movie_data, 1, $max_cnt);
 
 		return array(
 			'title'  => $title,

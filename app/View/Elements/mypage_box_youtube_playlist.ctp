@@ -3,7 +3,7 @@
 	<!-- BOX上部分 -->
 	<div class="mylist_box_top">
 		<?php if($v['title'] == ''){$v['title']='要確認';} ?>
-		<a href="https://www.youtube.com/playlist?list=<?=$b->movie_str?>" target="_blank"><?=mb_strimwidth($v['author'].' : '.$v['title'],0,52,'…','utf-8')?></a>
+		<a href="https://www.youtube.com/playlist?list=<?=$v['mylist_str']?>" target="_blank"><?=mb_strimwidth($v['author'].' : '.$v['title'],0,52,'…','utf-8')?></a>
 	</div>
 
 	<!-- BOX中部分 -->
@@ -48,6 +48,6 @@
 		最終チェック:<?=date("Y/m/d H:i", strtotime($v['updated_at']))?>
 	</div>
 
-	<div class="mylist_box_more bottom_open" type="1" str="<?=$v['mylist_str']?>">more</div>
+	<div class="mylist_box_more bottom_open" type="5" str="<?=$v['mylist_str']?>">more</div>
 
 </article>
