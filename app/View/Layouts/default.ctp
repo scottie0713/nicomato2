@@ -39,7 +39,7 @@
 
     <!-- ninja admax -->
 	<div id="ad_header">
-      <script src="//adm.shinobi.jp/s/2969f298024310456dae2a539f152bcb"></script>
+      <script src="//adm.shinobi.jp/s/ac8f9d9e2437c506e408b3975393f309"></script>
 	</div>
 	
 	<!-- お知らせ
