@@ -35,6 +35,23 @@ class StrComponent extends Component {
         
 	}//function
 
+	/**
+	 * 動画ＵＲＬから動画ＩＤを抜き取る
+	 *
+	 */
+	public function getMovieStr($url)
+	{
+		preg_match("/^http:\/\/www.nicovideo.jp\/watch\/([a-z0-9]+)$/", $url, $matches);
+		if(isset($matches[1]))
+		{
+			return $matches[1];
+		}
+		else
+		{
+			return null;
+		}
+	}//function
+
 	public function getDataType($str)
 	{
 		// マイリスト

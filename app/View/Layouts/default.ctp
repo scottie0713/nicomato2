@@ -55,8 +55,8 @@
 	    <?= $this->Html->link("トップ", "/") ?>&nbsp;|&nbsp;
 	    <?= $this->Html->link("最新動画", "/top/latest") ?>&nbsp;|&nbsp;
 	    <?= $this->Html->link("ページ一覧", "/top/mypagelist") ?>&nbsp;
-	    &nbsp;&nbsp;[新コンテンツmenu]&nbsp;
-	    <?= $this->Html->link("開発中", "/spot/index") ?>
+	    &nbsp;&nbsp;[神回まとめ(仮名)menu]&nbsp;
+	    <?= $this->Html->link("開発中", "/spot/mypage") ?>
 	  </div>
 	</div>
 
