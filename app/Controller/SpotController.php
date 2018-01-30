@@ -16,13 +16,32 @@ class SpotController extends AppController
     public $uses = array('SpotUser', 'SpotUserCategory', 'SpotUserMovie');
 	public $components = array('Str', 'Cookie');
 
+    public function index()
+	{
+		// 値をセット
+		//$this->set(compact());
+    }
+
+    /**
+     * マイページ一覧
+     */
+    public function mypagelist($page = 1, $sort = null)
+	{
+		$mypages      = $this->SpotUser->getList($page, TOP_MYPAGELIST_LIST_LIMIT, $sort);
+		$mypage_count = $this->SpotUser->find('count');
+
+        // セット
+		$this->set(compact('mypages'));
+		$this->set('page', $page);
+		$this->set('page_max', ceil($mypage_count / TOP_MYPAGELIST_LIST_LIMIT));
+    }
 
     /**
      * マイページ
 	 * @param user_id ユーザＩＤ
 	 * @param page    ページ番号
      */
-    public function mypage($user_id) {
+    public function mypage($user_id, $category_id = 0) {
 
 		// 無効なユーザＩＤならリダイレクト
 		if (is_null($user_id) || $user_id == 0) {
@@ -48,7 +67,7 @@ class SpotController extends AppController
 		unset($tmp_categorys);
 
 		// movie取得
-		$tmp_movies = $this->SpotUserMovie->getByUserId($user_id);
+		$tmp_movies = $this->SpotUserMovie->get($user_id, $category_id);
 		$movies     = array();
 		foreach($tmp_movies as $movie)
 		{
@@ -58,7 +77,7 @@ class SpotController extends AppController
 
 
 		// 値をセット
-		$this->set(compact('categorys', 'movies','user_id','users'));
+		$this->set(compact('categorys', 'movies','user_id','users','category_id'));
     }
 
 	/**
@@ -112,47 +131,52 @@ class SpotController extends AppController
 		$this->set('password', $password);
     }
 
-	/**
-	 * 編集ページ
-	 * @param user_id ユーザＩＤ
-	 */
-    public function category($user_id)
+    /**
+     * [API] マイページ作成
+	 * @param post title セッション
+	 * @param post url マイリスト/ユーザURL
+	 * @param post password マイリスト/ユーザURL
+     */
+    public function regist()
     {
-		// 無効なユーザＩＤならリダイレクト
-		if (is_null($user_id) || $user_id == 0) {
-			$this->redirect('/');
-		}
-		if (count($this->SpotUser->get($user_id)) == 0) {
-			$this->redirect('/');
-		}
-		$user = $this->SpotUser->get($user_id);
+		$res = array(
+			'success' => false,
+			'msg'     => '',
+			'user_id' => ''
+		);
 
-		// category取得
-		$tmp_categorys = $this->SpotUserCategory->getByUserId($user_id);
-		$categorys     = array();
-		foreach($tmp_categorys as $category)
+		$title    = $this->request->data('title');
+		$password = $this->request->data('password');
+
+		if($title == '')
 		{
-			$spot_category_id   = $category['SpotUserCategory']['id'];
-			$spot_category_name = $category['SpotUserCategory']['name'];
-
-			$categorys[$spot_category_id] = $spot_category_name;
+			$res['msg'] = 'ページ名が入力されていません';
 		}
-		unset($tmp_categorys);
-
-		//パスワード
-		$password = '';
-		if ($this->Cookie->read('session')) {
-			$cookie_session = $this->Cookie->read('session');
-			if ($cookie_session == $user['User']['session']) {
-				$password = $user['User']['password'];
-			}
+		if(!$this->Str->validatePassword($password))
+		{
+			$res['msg'] = '無効なパスワードです';
 		}
 
-		// 値をセット
-		$this->set(compact('categorys', 'user_id','users'));
-		$this->set('title',    $user['SpotUser']['title']);
-		$this->set('password', $password);
-    }
+		if($res['msg'] == '')
+		{
+			$user = array(
+				'title'      => $title,
+				'password'   => $password,
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s"),
+			);
+			$this->SpotUser->save($user);
+			$user_id        = $this->SpotUser->getInsertID();
+			$res['user_id'] = $user_id;
+			$res['success'] = true;
+		}//if
+
+        // 値をJSONで返す
+        $this->viewClass = 'Json';
+        $this->set(compact('res'));
+		$this->set('_serialize','res');
+	}
+
 
     /**
      * [API] 過去動画取得ＡＰＩ
@@ -454,6 +478,7 @@ class SpotController extends AppController
 		{
 			$movie_url   = $this->request->data('movie_url');
 			$movie_str   = $this->Str->getMovieStr($movie_url);
+			$min         = $this->request->data('min');
 			$sec         = $this->request->data('sec');
 			$comment     = $this->request->data('comment');
 			$category_id = $this->request->data('category_id');
@@ -462,12 +487,12 @@ class SpotController extends AppController
 				$res['msg'] = '動画URLが不正です';
 			}
 
-			if(!$sec
-			|| $sec == ''
+			if(!preg_match("/^[0-9]+$/", $min)
 			|| !preg_match("/^[0-9]+$/", $sec))
 			{
-				$res['msg'] = '秒数が不正です';
+				$res['msg'] = '時間が不正です';
 			}
+			$sec += $min * 60;
 
 			if($category_id == 0)
 			{
@@ -515,6 +540,7 @@ class SpotController extends AppController
 			$spot_movie_id = $this->request->data('id');
 			$movie_url     = $this->request->data('movie_url');
 			$movie_str     = $this->Str->getMovieStr($movie_url);
+			$min           = $this->request->data('min');
 			$sec           = $this->request->data('sec');
 			$comment       = $this->request->data('comment');
 			$category_id   = $this->request->data('category_id');
@@ -523,12 +549,12 @@ class SpotController extends AppController
 				$res['msg'] = '動画URLが不正です';
 			}
 
-			if(!$sec
-			|| $sec == ''
+			if(!preg_match("/^[0-9]+$/", $min)
 			|| !preg_match("/^[0-9]+$/", $sec))
 			{
-				$res['msg'] = '秒数が不正です';
+				$res['msg'] = '時間が不正です';
 			}
+			$sec += $min * 60;
 
 			if($category_id == 0)
 			{

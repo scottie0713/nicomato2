@@ -57,6 +57,29 @@ class SpotUserMovie extends AppModel
 	}
 
 	/**
+	 * ユーザＩＤから取得
+	 * @param unknown $user_id
+	 */
+	public function get($spot_user_id, $spot_category_id = null)
+	{
+		if($spot_category_id <= 0)
+		{
+			$spot_category_id = null;
+		}
+
+		$params = array(
+			'conditions' => array(
+				'spot_user_id'     => $spot_user_id,
+				'spot_category_id' => $spot_category_id,
+				'delete_flg'       => 0,
+			),
+		);
+		return $this->find('all', $params);
+	}
+
+
+
+	/**
 	 * 追加
 	 */
 	public function insert(

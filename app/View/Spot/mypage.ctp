@@ -5,12 +5,19 @@ echo $this->Html->css('spot/mypage', array('inline'=>false));
 echo $this->Html->script('spot/mypage.js', array('inline'=>false));
 ?>
 
-管理人は動画の好きな場面（神回）は何回でも見たくなります。<br />
-ここでは動画の見始めたい時間を登録することで、すぐにお気に入り場面を再生できます。<br />
-(開発中です)
 
 <h2><?=$users['SpotUser']['title']?>&nbsp;<a href="/spot/setting/<?=$users['SpotUser']['id']?>">[編集]</a></h2>
-<br />
+
+<div style="margin: 12px 0px 12px 20px;">
+	<select name="category">
+		<option value="0" <?php if($category_id == 0){echo "selected";} ?>>なし</option>
+		<?php foreach($categorys as $id => $name){ ?>
+		<option value="<?=$id?>" <?php if($id == $category_id){echo "selected";}?>><?=$name?></option>
+		<?php } ?>
+	</select>
+	<input type="hidden" name="user_id" value="<?=$user_id?>" />
+	<input id="category_submit" type="submit" value="表示" />
+</div>
 
 <?php foreach($movies as $m){ ?>
 	<article class="mylist_box box_black">

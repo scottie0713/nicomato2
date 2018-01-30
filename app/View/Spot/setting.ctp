@@ -47,33 +47,9 @@ echo $this->Html->script('spot/setting.js', array('inline'=>false));
 	</div>
 
 	<br />
-	<h3>動画変更/追加</h3>
-	<div style="margin-left:40px">
+	<h3>動画追加</h3>
 
-	<?php foreach($movies as $m){ ?>
-	<dl>
-		<dt>カテゴリ</dt>
-		<dd>
-			<select name="category">
-				<option value="0" <?php if(is_null($m['spot_category_id'])){echo "default";} ?>>なし</option>
-				<?php foreach($categorys as $id => $name){ ?>
-				<option value="<?=$id?>" <?php if($id == $m['spot_category_id']){echo "default";}?>><?=$name?></option>
-				<?php } ?>
-			</select>
-		</dd>
-		<dt>動画名</dt>
-		<dd><?=$m['movie_title']?>&nbsp;</dd>
-    	<dt>動画ID</dt>
-		<dd><input type="text" name="movie_url" value="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>" style="width:300px" /></dd>
-		<dt>開始秒数</dt>
-		<dd><input type="text" name="sec" value="<?=$m['spot_sec']?>" style="width:60px" /></dd>
-    	<dt>コメント</dt>
-		<dd><input type="text" name="comment" value="<?=$m['user_comment']?>" /></dd>
-		<dt>&nbsp;</dt>
-		<dd><input class="change_movie_submit" type="submit" spot_movie_id="<?=$m['id']?>" value="変更" /></dd>
-	</dl>
-	<hr style="margin:20px 0px;"/>
-	<?php } ?>
+	<div style="margin-left:40px">
 	<dl>
 		<dt>カテゴリ</dt>
 		<dd>
@@ -86,13 +62,44 @@ echo $this->Html->script('spot/setting.js', array('inline'=>false));
 		</dd>
 		<dt>動画URL</dt>
 		<dd><input type="text" name="movie_url" value="" style="width:500px" /></dd>
-		<dt>開始秒数</dt>
-		<dd><input type="text" name="sec" value="" style="width:60px" /></dd>
+		<dt>開始時間</dt>
+		<dd><input type="text" name="min" value="" style="width:30px" />:<input type="text" name="sec" value="" style="width:20px" /></dd>
 	   	<dt>コメント</dt>
 		<dd><input type="text" name="comment" value="" /></dd>
 		<dt>&nbsp;</dt>
 		<dd><input id="add_movie_submit" type="submit" value="追加" /></dd>
 	</dl>
+	</div>
+
+	<br />
+
+	<h3>動画変更</h3>
+	<div style="margin-left:40px">
+
+	<?php foreach($movies as $m){ ?>
+	<dl>
+		<dt>カテゴリ</dt>
+		<dd>
+			<select name="category">
+				<option value="0" <?php if(is_null($m['spot_category_id'])){echo "selected";} ?>>なし</option>
+				<?php foreach($categorys as $id => $name){ ?>
+				<option value="<?=$id?>" <?php if($id == $m['spot_category_id']){echo "selected";}?>><?=$name?></option>
+				<?php } ?>
+			</select>
+		</dd>
+		<dt>動画名</dt>
+		<dd><?=$m['movie_title']?>&nbsp;</dd>
+    	<dt>動画ID</dt>
+		<dd><input type="text" name="movie_url" value="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>" style="width:300px" /></dd>
+		<dt>開始時間</dt>
+		<dd><input type="text" name="min" value="<?=intval(($m['spot_sec']/60))?>" style="width:30px" />:<input type="text" name="sec" value="<?=($m['spot_sec']%60)?>" style="width:20px" /></dd>
+    	<dt>コメント</dt>
+		<dd><input type="text" name="comment" value="<?=$m['user_comment']?>" /></dd>
+		<dt>&nbsp;</dt>
+		<dd><input class="change_movie_submit" type="submit" spot_movie_id="<?=$m['id']?>" value="変更" /></dd>
+	</dl>
+	<hr style="margin:20px 0px;"/>
+	<?php } ?>
 	</div>
 
 </div>

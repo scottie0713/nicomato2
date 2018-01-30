@@ -1,44 +1,40 @@
 <?php
 echo $this->Html->script('common/jquery-2.0.0.min.js', array('inline'=>false));
 echo $this->Html->script('common/ajax.js', array('inline'=>false));
-echo $this->Html->css('top/latest', array('inline'=>false));
+echo $this->Html->script('spot/index.js', array('inline'=>false));
 ?>
 <div>
 
-<?php foreach($spots as $spot){ ?>
-<?php     if($spot["UserSpot"]["data_type"] == 1){ ?>
-  <script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm<?=$spot["UserSpot"]["movie_str"]?>/script?w=640&h=360&from=<?=$spot["UserSpot"]["spot_sec"]?>"></script><noscript>movie cannot load.</noscript>
-<?php }elseif($spot["UserSpot"]["data_type"] == 2){ ?>
-<!--
-  <div id="ytplayer"></div>
-  <script>
-  // Load the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/player_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	<h2>神回まとめ（仮）について</h2>
+	<div style="margin-left:20px; font-size:14px;">
+		動画の中で好きなシーンをすぐ見れるように登録できます。<br />
+		動画は外部プレーヤーを使ってその場で見ることができます。<br />
+		<span style="color:red;">開発版です。データはなるべく残していきますが、動作不良が発生する可能性があります。</span>
+	</div>
+	<br />
 
-  // Replace the 'ytplayer' element with an <iframe> and
-  // YouTube player after the API code downloads.
-  var player;
-  function onYouTubePlayerAPIReady() {
-    player = new YT.Player('ytplayer', {
-      height: '360',
-      width: '640',
-      videoId: '<?=$spot["UserSpot"]["movie_str"]?>',
-	  playerVars: {
-	    'startSeconds' : '<?=$spot["UserSpot"]["spot_sec"]?>',
-	  }
-    });
-  }
-</script>
--->
+	<!--
+	<h2>説明</h2>
+	<div style="margin-left:20px; font-size:14px;">
+	</div>
+	-->
 
-<iframe id="ytplayer" type="text/html" width="640" height="360"
-  src="http://www.youtube.com/embed/<?=$spot["UserSpot"]["movie_str"]?>?start=600&autoplay=0&origin=http://example.com"
-frameborder="0"/>
-<?php } ?>
-<?php } ?>
+	<h2>新規作成</h2>
+	<h3>ページ名 <span style="color:red">&lt;必須&gt;</span></h3>
+	<div style="margin-left:20px; font-size:14px;">
+		自分のページのタイトルになります。お好きに記入してください。<br/>
+		<input id="title" type="text" style="width:400px;" value="" /><br/>
+	</div>
+	<h3>編集用パスワード</h3>
+	<div style="margin-left:20px; font-size:14px;">
+		<span style="color:red">※半角英数字20文字まで</span><br/>
+		なくてもOKです。他人に編集されるのが嫌な人は、パスワードを設定してください。<br/>
+	    <input id="password" type="text" value="" />&nbsp;
+	</div>
+	<h3>登録する！</h3>
+	<div style="margin-left:20px; font-size:14px;">
+	    <input id="regist_submit" type="submit" value="登録" />
+	</div>
+    <br />
 
-</div>
 </div>
