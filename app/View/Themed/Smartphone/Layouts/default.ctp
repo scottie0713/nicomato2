@@ -25,7 +25,7 @@
 
 </script>
 </head>
-<body>
+<body bgcolor="#666">
 
   <!-- 左広告枠 -->
   <div id="left_ad">
@@ -40,8 +40,10 @@
     <div id="header">
       <div class="left"><img src="/img/common/logo_s.png"></div>
       <div id="menu">
-	    <a href="/">トップ</a>　　　<a href="/top/latest">最新動画</a><br />
-        <a href="/top/mypagelist">ページ一覧</a>　<a href="/bbs/index">意見箱</a>
+	    [動画更新チェックmenu]<br />
+	    <a href="/">トップ</a>&nbsp;|&nbsp;<a href="/top/latest">最新動画</a>&nbsp;|&nbsp;<a href="/top/mypagelist">ページ一覧</a>
+	    <br />[神回まとめ(α)menu]<br />
+	    <a href="/spot/index">トップ</a>&nbsp;|&nbsp;<a href="/spot/mypagelist">ページ一覧</a>
 	  </div>
     </div>
     <!--/header -->
