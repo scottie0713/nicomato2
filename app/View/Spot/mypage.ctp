@@ -5,6 +5,12 @@ echo $this->Html->css('spot/mypage', array('inline'=>false));
 echo $this->Html->script('spot/mypage.js', array('inline'=>false));
 ?>
 
+<div id="sidebar">
+	<div id="sidebar_menu"></div>
+	<div id="sidebar_body">
+		<iframe name="player" src=""></iframe>
+	</div>
+</div>
 
 <h2><?=$users['SpotUser']['title']?>&nbsp;<a href="/spot/setting/<?=$users['SpotUser']['id']?>">[編集]</a></h2>
 
@@ -24,29 +30,23 @@ echo $this->Html->script('spot/mypage.js', array('inline'=>false));
 
 		<!-- BOX1 title -->
 		<div class="box1">
-			<a href="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>" target="_blank"><?=$m['movie_title']?></a>
+			<!--a href="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>" target="_blank"><?=$m['movie_title']?></a-->
+			<iframe width="290" height="130" src="https://ext.nicovideo.jp/thumb/<?=$m['movie_str']?>" scrolling="no" style="border:solid 0px;" frameborder="0"><a href="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>">【実況】４人で攻略！シュールな物理演算パズル　part2</a></iframe>
 		</div>
 
 		<!-- BOX2 comment -->
 		<div class="box2">
-			<?=$m['user_comment']?>
+			<?=$m['user_comment']?><br />
 		</div>
 
-		<!-- BOX3 player -->
-		<div class="movie">
-  			<script type="application/javascript" src="https://embed.nicovideo.jp/watch/<?=$m["movie_str"]?>/script?w=520&h=390&from=<?=$m["spot_sec"]?>"></script><noscript>movie cannot load.</noscript>
+		<div class="box3">
+			<a class="play" movie_id="<?=$m['movie_str']?>" sec="<?=$m['spot_sec']?>" target="player">
+				<?=$this->Html->image("spot/play.png", array("width"=>50))?>
+			</a>
 		</div>
 
 	</article>
 <?php } ?>
-
-
-<!--
-  <script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm<?=$m["movie_str"]?>/script?w=640&h=360&from=<?=$m["spot_sec"]?>"></script><noscript>movie cannot load.</noscript>
-<iframe id="ytplayer" type="text/html" width="640" height="360"
-  src="http://www.youtube.com/embed/<?=$m["movie_str"]?>?start=600&autoplay=0&origin=http://example.com"
-frameborder="0"/>
-  -->
 
 </div>
 </div>

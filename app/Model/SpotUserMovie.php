@@ -147,18 +147,15 @@ class SpotUserMovie extends AppModel
 	 * @param unknown $value
 	 * @param unknown $user_id
 	 */
-	public function updateColumn($user_id, $column, $value)
+	public function updateColumn($spot_movie_id, $column, $value)
 	{
 		$sql = "
  UPDATE spot_user_movies
- SET :column = :value
- WHERE user_id = :user_id";
+ SET {$column} = :value
+ WHERE id = {$spot_movie_id}";
 		$params = array(
-				'column'  => $column,
 				'value'   => $value,
-				'user_id' => $user_id,
 		);
-
 		return $this->query($sql,$params);
 
 	}//function

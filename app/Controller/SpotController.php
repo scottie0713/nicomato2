@@ -15,6 +15,7 @@ class SpotController extends AppController
     public $helpers = array('Html', 'Form');
     public $uses = array('SpotUser', 'SpotUserCategory', 'SpotUserMovie');
 	public $components = array('Str', 'Cookie');
+	public $autoLayout = true;
 
     public function index()
 	{
@@ -179,24 +180,14 @@ class SpotController extends AppController
 
 
     /**
-     * [API] 過去動画取得ＡＰＩ
+     * 外部プレイヤー再生
 	 * @param data_type
 	 * @param mylist_str
      */
-	public function detail($data_type, $mylist_str)
+	public function play($id, $w, $h, $t)
     {
-		$res = array(
-			'success' => false,
-			'result' => array(),
-		);
-		$mylist = $this->DataMylist->getByRss($data_type, $mylist_str, 50);
-		$res['result'] = json_decode($mylist['before_movie_data']);
-		$res['success']= true;
-
-        // 値をJSONで返す
-        $this->viewClass = 'Json';
-        $this->set(compact('res'));
-        $this->set('_serialize','res');
+		$this->layout = '';
+		$this->set(compact('id', 'w','h','t'));
     }
 
 
@@ -589,6 +580,55 @@ class SpotController extends AppController
         $this->set('_serialize','res');
     }
 
+
+    public function changeSelectCategory($user_id)
+    {
+		$res = array(
+			'success' => false,
+			'msg' => ''
+		);
+		$session = $this->request->data('session');
+		if( $this->checkSession($user_id, $session) )
+		{
+			$category_id = $this->request->data('category_id');
+			$ids         = $this->request->data('list');
+			if ($ids == '')
+			{
+				$res['msg'] = '選択していません';
+			}
+			else 
+			{
+				$datasource = $this->SpotUserMovie->getDataSource();
+				try{
+					$datasource->begin();
+					foreach($ids as $id)
+					{
+				    	$this->SpotUserMovie->updateColumn($id, 'spot_category_id', $category_id);
+					}
+					$datasource->commit();
+
+					$res['success'] = true;
+					$res['msg']     = '変更しました';
+				}
+				catch(Exception $e)
+				{
+					$datasource->rollback();
+					$res['success'] = false;
+					$res['msg']     = '変更に失敗しました: '.$e->getMessage();
+				}
+
+			}//if
+		}
+		else
+		{
+			$res['msg'] = '認証に失敗しました';
+		}//if
+
+        // 値をJSONで返す
+        $this->viewClass = 'Json';
+        $this->set(compact('res'));
+        $this->set('_serialize','res');
+    }
 
 
 
