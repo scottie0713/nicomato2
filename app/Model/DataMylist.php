@@ -27,6 +27,7 @@ class DataMylist extends AppModel
 			if (!$res){
 				continue;
 			}
+			continue;
 			$sql = "UPDATE {$this->useTable}
  SET title=:title, author=:author, last_movie_data=:last_movie_data,
  before_movie_data=:before_movie_data, last_checked_at=:last_checked_at,
@@ -427,10 +428,11 @@ class DataMylist extends AppModel
 		}
 
 		// 全件取る（APIでソートできないため）
+		$next_token = '';
 		$all_movie_data = array();
 		do
 		{
-			$json = $this->getRss("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId={$mylist_str}&maxResults=50&key=AIzaSyCpWJ6athX8UcXf2zjdQSOBnjDgZZSDy-g");
+			$json = $this->getRss("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId={$mylist_str}&maxResults=50&key=AIzaSyCpWJ6athX8UcXf2zjdQSOBnjDgZZSDy-g&pageToken={$next_token}");
 			$result = json_decode($json);
 
 			if($result->pageInfo->totalResults == 0)
