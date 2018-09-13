@@ -27,7 +27,6 @@ class DataMylist extends AppModel
 			if (!$res){
 				continue;
 			}
-			continue;
 			$sql = "UPDATE {$this->useTable}
  SET title=:title, author=:author, last_movie_data=:last_movie_data,
  before_movie_data=:before_movie_data, last_checked_at=:last_checked_at,
