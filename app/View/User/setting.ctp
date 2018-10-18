@@ -38,10 +38,10 @@ echo $this->Html->css('user/setting.css');
 		次の形でURLを入れてください。<br/>
 		<span style="color:#060;">
 		ニコニコ動画：<br />
-		公開マイリスト: http://www.nicovideo.jp/mylist/【数字】<br/>
-		ユーザ投稿動画: http://www.nicovideo.jp/user/【数字】<br/>
-		CHのブロマガ　: http://ch.nicovideo.jp/【文字列】/blomaga<br/>
-		CHの生放送　　: http://ch.nicovideo.jp/【文字列】/live<br/>
+		公開マイリスト: http(s)://www.nicovideo.jp/mylist/【数字】<br/>
+		ユーザ投稿動画: http(s)://www.nicovideo.jp/user/【数字】<br/>
+		CHのブロマガ　: http(s)://ch.nicovideo.jp/【文字列】/blomaga<br/>
+		CHの生放送　　: http(s)://ch.nicovideo.jp/【文字列】/live<br/>
 		<br />
 		youtube：<br />
 		プレイリスト： https://www.youtube.com/playlist?list=【文字列】 または https://www.youtube.com/watch?v=【文字列】&list=【文字列】<br />
@@ -115,13 +115,13 @@ echo $this->Html->css('user/setting.css');
 		$url = '';
 		foreach ($mylists as $m){
 			if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_MYLIST){
-				$url .= "http://www.nicovideo.jp/mylist/{$m['d']['mylist_str']}\n";
+				$url .= "https://www.nicovideo.jp/mylist/{$m['d']['mylist_str']}\n";
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_USER){
-				$url .= "http://www.nicovideo.jp/user/{$m['d']['mylist_str']}\n";
+				$url .= "https://www.nicovideo.jp/user/{$m['d']['mylist_str']}\n";
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_LIVE){
-				$url .= "http://ch.nicovideo.jp/{$m['d']['mylist_str']}/live\n";
+				$url .= "https://ch.nicovideo.jp/{$m['d']['mylist_str']}/live\n";
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_BLOMAGA){
-				$url .= "http://ch.nicovideo.jp/{$m['d']['mylist_str']}/blomaga\n";
+				$url .= "https://ch.nicovideo.jp/{$m['d']['mylist_str']}/blomaga\n";
 			} else if($m['d']['data_type'] == DATA_MYLIST_DATA_TYPE_YOUTUBE_PLAYLIST){
 				$url .= "https://www.youtube.com/playlist?list={$m['d']['mylist_str']}\n";
 			}//if

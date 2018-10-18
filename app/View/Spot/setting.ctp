@@ -122,7 +122,7 @@ echo $this->Html->css('spot/setting', array('inline'=>false));
 		</td>
 		<td>
 			<?=$m['movie_title']?><br />
-			<input type="text" name="movie_url" value="http://www.nicovideo.jp/watch/<?=$m['movie_str']?>" style="width:320px" />
+			<input type="text" name="movie_url" value="https://www.nicovideo.jp/watch/<?=$m['movie_str']?>" style="width:320px" />
 		</td>
 		<td><input type="text" name="min" value="<?=intval(($m['spot_sec']/60))?>" style="width:30px" />:<input type="text" name="sec" value="<?=($m['spot_sec']%60)?>" style="width:20px" /></td>
 		<td><input type="text" name="comment" value="<?=$m['user_comment']?>" /></td>
