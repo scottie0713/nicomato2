@@ -1,0 +1,63 @@
+/* 全体  */
+
+/*  一覧 */
+table{
+	width: 100%;
+	padding: 10px 0px;
+}
+tr{
+	min-height: 40px;
+}
+tr:nth-child(even){
+	background:#CCCCCC;
+}
+td{
+	font-size:8px;
+}
+
+#button_submit {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #ff9900 0, #ffb800 100%);
+	background: -o-linear-gradient(90deg, #ff9900 0, #ffb800 100%);
+	background: -webkit-linear-gradient(90deg, #ff9900 0, #ffb800 100%);
+	background: linear-gradient(0deg, #ff9900 0, #ffb800 100%);
+
+	width: 160px;
+	height: 20px;
+
+	margin-left: 10px;
+
+	vertical-align: middle;
+	text-align: center;
+
+	font-size: 20px;
+	font-weight: bold;
+
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+
+.setting_btn {
+	width: 40px;
+	height: 30px;
+	font-size: 11px;
+	font-family: 'Meiryo';
+	line-height:35px;
+	text-align: center;
+}
+.delete_on {
+	background-image: url("/img/common/button_red_ss.png");
+}
+.delete_off {
+	background-image: url("/img/common/button_blue_ss.png");
+}
+.check_on {
+	background-image: url("/img/common/button_green_ss.png");
+}
+.check_off {
+	background-image: url("/img/common/button_gray_ss.png");
+}
+

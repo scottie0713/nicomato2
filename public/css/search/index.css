@@ -1,0 +1,170 @@
+/**
+ * ---------------------------------
+ *            MAIN CONTENT
+ * ---------------------------------
+ */
+#content{
+    background-color: #e8e8e8;
+    /*padding-left: 160px;*/
+    /*background-image: url("/img/mypage/bg.png");*/
+}
+
+/**
+ * ---------------------------------
+ *         マイリストＢＯＸ
+ * ---------------------------------
+ */
+.author{
+    display: block;
+    position: relative;
+    z-index: 10;
+
+    margin: 4px;
+    float: left;
+    width: 620px;
+    height: 108px;
+
+    background-color: #b0c4de;
+    border: solid 1px #b0c4de;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* マイリスト小ポップアップ部分 */
+.mylist_pop_move{
+    display: none;
+    position: absolute;
+    top: 4px;
+    left: 504px;
+    width: 50px;
+    height: 50px;
+    z-index: 11;
+
+    background-image: url("/img/mypage/move.png");
+    background-color: #000;
+    opacity: 0.8;
+    background-size: 40px 40px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+.mylist_pop_delete{
+    display: none;
+    position: absolute;
+    top: 4px;
+    left: 564px;
+    width: 50px;
+    height: 50px;
+    z-index: 11;
+
+    background-image: url("/img/mypage/delete.png");
+    background-color: #000;
+    opacity: 0.8;
+    background-size: 40px 40px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+
+/* マイリスト名部分 */
+.mylist_title{
+    position: relative;
+    width: 620px;
+    padding: 6px 0 6px 20px;
+    margin: -1px;
+
+    /*border: solid 1px #cfcfcf;*/
+    color: #fff;
+    background-color: #11233d;
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+/* マイリスト　初期表示部分 */
+.mylist_main{
+    position: relative;
+    height: 74px;
+    padding: 4px;
+    font-size: 14px;
+}
+.mylist_main img{
+    position: absolute;
+    top: 5px;
+    left: 2px;
+
+    width: 92px;
+}
+.mylist_link_large{
+    position: absolute;
+    left: 100px;
+    word-break: break-all;
+}
+.mylist_link_large .title_large{
+    font-size: 18px;
+}
+.mylist_link_large .info_large{
+}
+/* マイリスト　エクステンド表示部分 */
+.mylist_sub{
+    display: none;
+    position: relative;
+    margin: 4px;
+    font-size: 10px;
+}
+.mylist_sub ul{
+    list-style:none;
+    margin: 0;
+}
+.mylist_sub li{
+    clear: both;
+    padding: 2px;
+    margin: 0px;
+}
+.mylist_sub img{
+    float: left;
+    width: 40px;
+}
+.mylist_sub .title{
+    margin-left: 46px;
+}
+.mylist_sub .info{
+    margin-left: 52px;
+    margin-top: 4px;
+}
+.mylist_sub_scroll{
+    position: absolute;
+}
+.mylist_sub_scroll .sc_top{
+    position: absolute;
+    left: 558px;
+    width: 60px;
+    height: 60px;
+    z-index: 11;
+    background-image: url("/img/mypage/arrow_top.png");
+    background-size: 60px 60px;
+}
+.mylist_sub_scroll .sc_bottom{
+    position: absolute;
+    top: 122px;
+    left: 558px;
+    width: 60px;
+    height: 60px;
+    z-index: 11;
+    background-image: url("/img/mypage/arrow_bottom.png");
+    background-size: 60px 60px;
+}
+/* 雛形は非表示状態にしておく */
+.mylist_temp{
+        display: none;
+}
+

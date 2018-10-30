@@ -1,0 +1,219 @@
+/**
+ * ---------------------------------
+ *            MAIN CONTENT
+ * ---------------------------------
+ */
+#content{
+    background-color: #f4f4f4;
+    /*padding-left: 160px;*/
+    /*background-image: url("/img/mypage/bg.png");*/
+}
+
+/**
+ * ---------------------------------
+ *         マイリストＢＯＸ
+ * ---------------------------------
+ */
+/* 枠部分 */
+.box_red{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #0f0303 0, #c71585 100%);
+	background: -o-linear-gradient(90deg, #0f0303 0, #c71585 100%);
+	background: -webkit-linear-gradient(90deg, #0f0303 0, #c71585 100%);
+	background: linear-gradient(0deg, #0f0303 0, #c71585 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.box_green{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #030f03 0, #2e8b57 100%);
+	background: -o-linear-gradient(90deg, #030f03 0, #2e8b57 100%);
+	background: -webkit-linear-gradient(90deg, #030f03 0, #2e8b57 100%);
+	background: linear-gradient(0deg, #030f03 0, #2e8b57 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.box_blue{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #03030f 0, #5882fa 100%);
+	background: -o-linear-gradient(90deg, #03030f 0, #5882fa 100%);
+	background: -webkit-linear-gradient(90deg, #03030f 0, #5882fa 100%);
+	background: linear-gradient(0deg, #03030f 0, #5882fa 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.box_black{
+-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #030303 0, #848484 100%);
+	background: -o-linear-gradient(90deg, #030303 0, #848484 100%);
+	background: -webkit-linear-gradient(90deg, #030303 0, #848484 100%);
+	background: linear-gradient(0deg, #030303 0, #848484 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.box_crimson{
+-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #300 0, #f00 100%);
+	background: -o-linear-gradient(90deg, #300 0, #f00 100%);
+	background: -webkit-linear-gradient(90deg, #300 0, #f00 100%);
+	background: linear-gradient(0deg, #300 0, #f00 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.mylist_box{
+    display: block;
+    position: relative;
+    z-index: 10;
+
+    margin: 10px 0px;
+    float: left;
+    width: 100%;
+    height: 198px;
+
+	/* border-radius */
+	border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+
+	/* box-shadow */
+	box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+	-webkit-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+	-moz-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+}
+/* 上部分 */
+.mylist_box_top{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 4px;
+	left: 8px;
+
+    width: 95%;
+    height: 20px;
+	font-size: 14px;
+}
+.mylist_box_top a:link    { color: #fff; }
+.mylist_box_top a:active  { color: #fff; }
+.mylist_box_top a:visited { color: #fff; }
+.mylist_box_top a:hover   { color: #fff; }
+/* 中部分 */
+.mylist_box_middle{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 28px;
+	left: 4px;
+
+    width: 98%;
+    height: 100px;
+
+	background-color: #ffffff;
+	opacity: 0.9;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.mylist_box_right{
+    position: absolute;
+	top: 6px;
+	left: 108px;
+
+	width: 63%;
+    height: 74px;
+    padding: 4px;
+}
+.mylist_box_right .title{
+	font-size: 16px;
+	color: #000;
+}
+.mylist_box_right .publish{
+	font-size: 15px;
+}
+.mylist_box_left{
+    position: absolute;
+    top: 8px;
+    left: 6px;
+	width: 100px;
+	height: 100px;
+}
+.mylist_box_left img{
+	width: 100px;
+}
+.mylist_box_left_square{
+    position: absolute;
+    top: 8px;
+    left: 6px;
+	width: 70px;
+	height: 70px;
+}
+.mylist_box_left_square img{
+	width: 70px;
+}
+/* BOX 下部分 */
+.mylist_box_bottom{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 132px;
+	left: 4px;
+
+    width: 98%;
+    height: 44px;
+
+	background-color: #ffffff;
+	opacity: 0.7;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+	padding: 2px;
+	font-size: 10px;
+    word-break: break-all;
+}
+/* 右下部分 */
+.mylist_box_footer{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 180px;
+	right: 10px;
+
+    width: 94%;
+    height: 16px;
+
+	text-align: right;
+	color: #fff;
+	font-size: 8px;
+}
+

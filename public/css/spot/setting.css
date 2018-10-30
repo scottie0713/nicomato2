@@ -1,0 +1,12 @@
+table {
+
+}
+td {
+	padding: 2px;
+	border: 1px solid #ddd;
+	font-size: 12px;
+}
+
+tr:nth-child(even) {
+		background: #ddd;
+}

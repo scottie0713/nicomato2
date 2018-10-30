@@ -1,0 +1,201 @@
+/**
+ * ---------------------------------
+ *            MAIN CONTENT
+ * ---------------------------------
+ */
+#content{
+    background-color: #f4f4f4;
+    /*padding-left: 160px;*/
+    /*background-image: url("/img/mypage/bg.png");*/
+}
+
+.box_black{
+-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -moz-linear-gradient(90deg, #030303 0, #42454a 100%);
+	background: -o-linear-gradient(90deg, #030303 0, #42454a 100%);
+	background: -webkit-linear-gradient(90deg, #030303 0, #42454a 100%);
+	background: linear-gradient(0deg, #030303 0, #42454a 100%);
+
+	margin-top: 0 !important;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; /*Will not allow bg color to leak outside borders*/
+}
+.mylist_box{
+    display: block;
+    position: relative;
+    z-index: 10;
+
+    margin: 10px 0px;
+    float: left;
+    width: 100%;
+    height: 166px;
+
+	/* border-radius */
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+
+	/* box-shadow */
+	box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+	-webkit-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+	-moz-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+}
+/* 上部分 */
+.mylist_box_top{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 10px;
+	left: 16px;
+
+    width: 90%;
+    height: 158px;
+	font-size: 14px;
+}
+.mylist_box_top a:link    { color: #fff; }
+.mylist_box_top a:active  { color: #fff; }
+.mylist_box_top a:visited { color: #fff; }
+.mylist_box_top a:hover   { color: #fff; }
+/* 中部分 */
+.mylist_box_middle{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 50px;
+	left: 14px;
+
+    width: 92%;
+    height: 100px;
+
+	background-color: #ffffff;
+	opacity: 0.9;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.mylist_box_right{
+    position: absolute;
+	top: 6px;
+	left: 110px;
+
+	width: 62%;
+    height: 74px;
+    padding: 4px;
+}
+.mylist_box_right .title{
+	font-size: 16px;
+	color: #000;
+}
+.mylist_box_right .publish{
+	font-size: 15px;
+}
+a:link.mylist_box_right { color: #003; }
+a:active.mylist_box_right { color: #003; }
+a:visited.mylist_box_right { color: #003; }
+a:hover.mylist_box_right { color: #003; }
+
+.mylist_box_left{
+    position: absolute;
+    top: 12px;
+    left: 8px;
+	width: 100px;
+	height: 100px;
+}
+.mylist_box_left img{
+	width: 100px;
+}
+/* BOX 下部分 */
+.mylist_box_bottom{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 176px;
+	left: 30px;
+
+    width: 324px;
+    height: 44px;
+
+	background-color: #ffffff;
+	opacity: 0.7;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px #dddddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+	padding: 8px;
+	font-size: 11px;
+    word-break: break-all;
+}
+/* 右下部分 */
+.mylist_box_footer{
+    display: block;
+    position: absolute;
+    z-index: 11;
+
+	top: 230px;
+	left: 18px;
+
+    width: 324px;
+    height: 28px;
+
+	text-align: right;
+	color: #fff;
+	font-size: 8px;
+}
+/* 動画再生部分 */
+.mylist_box_movie{
+    display: block;
+    position: absolute;
+    z-index: 12;
+
+	top: 10px;
+	left: 368px;
+
+    width: 400px;
+    height: 300px;
+}
+
+
+/* ページャ */
+.page {
+	display: inline-block;
+	padding: 4px 10px;
+	margin-right: 4px;
+	border-radius: 3px;
+	border: solid 1px #c0c0c0;
+	background: #e9e9e9;
+	box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+	font-size: .875em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #717171;
+	text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+}
+
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.page:hover, .page.gradient:hover {
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
+    background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
+}
+.page.active {
+    border: none;
+    background: #616161;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0, .5), 0px 1px 0px rgba(255,255,255, .8);
+    color: #f0f0f0;
+    text-shadow: 0px 0px 3px rgba(0,0,0, .5);
+}

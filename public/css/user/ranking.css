@@ -1,0 +1,42 @@
+.main td {
+  background-color:#333333;
+  border: 2px #cccccc solid;
+  width:150px;
+  min-width:150px;
+  max-width:150px;
+  min-height:100px;
+  word-break: break-all;
+}
+.edit {
+  padding: 2px;
+}
+.ranking_content {
+  font-size:12px;
+  background-color:#ffffff;
+  margin: 2px;
+  padding:8px;
+  min-height:160px;
+  max-height:160px;
+
+  border-radius: 5px;
+  box-shadow: 0 1px 1px #dddddd;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ranking_content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ranking_content span {
+}
+
+input {
+  font-size: 9px;
+  width: 134px;
+}
+select {
+  font-size: 12px;
+}
+

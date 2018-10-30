@@ -1,0 +1,17 @@
+/**
+ * ---------------------------------
+ *            MAIN CONTENT
+ * ---------------------------------
+ */
+
+#list_main {
+	margin-left: 4px;
+}
+li {
+	padding: 10px 10px;
+}
+li:nth-child(even){
+	background:#CCCCCC;
+}
+
+
